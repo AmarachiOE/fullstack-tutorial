@@ -1,0 +1,7 @@
+Let's think about the data we will need to expose in order to build our app. Our app needs to:
+
+    - Fetch all upcoming rocket launches
+    - Fetch a specific launch by its ID
+    - Login the user
+    - Book launch trips if the user is logged in
+    - Cancel launch trips if the user is logged in
