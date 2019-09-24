@@ -60,6 +60,13 @@ type Mutation {
     # login token
     login(email: String): String
 }
+
+# response for booking and cancelling trips
+type TripUpdateResponse {
+    success: Boolean!
+    message: String
+    launches: [Launch]
+}
 `;
 
 
