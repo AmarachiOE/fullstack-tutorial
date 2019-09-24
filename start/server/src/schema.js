@@ -49,6 +49,17 @@ enum PatchSize {
     SMALL
     LARGE
 }
+
+type Mutation {
+    # if false, booking trips failed -- check errors
+    bookTrips(launchIds: [ID]!): TripUpdateResponse!
+
+    # if false, cancellation failed -- check errors
+    cancelTrip(launchId: ID!): TripUpdateResponse!
+
+    # login token
+    login(email: String): String
+}
 `;
 
 
