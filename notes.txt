@@ -12,3 +12,12 @@ Space-X v2 REST API: (start > server > src > datasource > launch.js)
     - package exposes the RESTDataSource class that is responsible for fetching data from a REST API
     - to build a data source for a REST API, extend the RESTDataSource class and define this.baseURL
     - Apollo RESTDataSource also sets up an in-memory cache that caches responses from our REST resources w/ no addtl set up --> "partial query caching"
+
+
+Resolvers file:
+    - The resolvers code show the resolver functions for the Query type fields: launches, launch, and me
+    - The first argument to our top-level resolvers, parent, is always blank because it refers to the root of our graph
+    - The second argument refers to any arguments passed into our query, which we use in our launch query to fetch a launch by its id
+    - Finally, we destructure our data sources from the third argument, context, in order to call them in our resolvers
+    - Our resolvers are simple and concise because the logic is embedded in the LaunchAPI and UserAPI data sources
+    - We recommend keeping your resolvers thin as a best practice, which allows you to safely refactor without worrying about breaking your API
