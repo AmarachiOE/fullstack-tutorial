@@ -21,3 +21,29 @@ Resolvers file:
     - Finally, we destructure our data sources from the third argument, context, in order to call them in our resolvers
     - Our resolvers are simple and concise because the logic is embedded in the LaunchAPI and UserAPI data sources
     - We recommend keeping your resolvers thin as a best practice, which allows you to safely refactor without worrying about breaking your API
+
+
+Practice Queries in Playground:
+    query GetLaunches {
+        launches {
+            id
+            mission {
+                name
+            }
+        }
+    }
+
+    query GetLaunchById {
+        launch(id: 60) {
+            id
+            rocket {
+                id
+                type
+            }
+        }
+    }
+
+
+Pagination (schema.js):
+    - Now, the launches query takes in two parameters, pageSize and after, and returns a LaunchConnection. 
+    - The LaunchConnection type returns a result that shows the list of launches, in addition to a cursor field that keeps track of where we are in the list and a hasMore field to indicate if there's more data to be fetched.
