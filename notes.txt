@@ -5,3 +5,10 @@ Let's think about the data we will need to expose in order to build our app. Our
     - Login the user
     - Book launch trips if the user is logged in
     - Cancel launch trips if the user is logged in
+
+
+Space-X v2 REST API: (start > server > src > datasource > launch.js)
+    - $ npm install apollo-datasource-rest --save
+    - package exposes the RESTDataSource class that is responsible for fetching data from a REST API
+    - to build a data source for a REST API, extend the RESTDataSource class and define this.baseURL
+    - Apollo RESTDataSource also sets up an in-memory cache that caches responses from our REST resources w/ no addtl set up --> "partial query caching"
