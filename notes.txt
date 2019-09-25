@@ -79,3 +79,16 @@ Practice Query for Authentication/Login:
     mutation LoginUser {
         login(email: "daisy@apollographql.com")
     }
+
+    # returned: "ZGFpc3lAYXBvbGxvZ3JhcGhxbC5jb20="
+
+Practice Query for Booking:
+    mutation BookTrips {
+        bookTrips(launchIds: [67, 68, 69]) {
+            success
+            message
+            launches {
+                id
+            }
+        }
+    }
