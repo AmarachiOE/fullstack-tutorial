@@ -63,15 +63,17 @@ module.exports = {
   },
 
   // The login resolver receives an email address and returns a token if a user exists
-  Mutation: {
-    login: async (_, { email }, { dataSources }) => {
-      const user = await dataSources.userAPI.findOrCreateUser({ email });
-      if (user) return Buffer.from(email).toString('base64');
-    }
-  },
+//   Mutation: {
+//     login: async (_, { email }, { dataSources }) => {
+//       const user = await dataSources.userAPI.findOrCreateUser({ email });
+//       if (user) return Buffer.from(email).toString('base64');
+//     }
+//   },
 
 
   // Both bookTrips and cancelTrips must return the properties specified on our TripUpdateResponse type from our schema, which contains a success indicator, a status message, and an array of launches that we've either booked or cancelled
+
+  // The login resolver receives an email address and returns a token if a user exists
   Mutation: {
     bookTrips: async (_, { launchIds }, { dataSources }) => {
       const results = await dataSources.userAPI.bookTrips({ launchIds });
@@ -105,6 +107,11 @@ module.exports = {
         message: 'trip cancelled',
         launches: [launch],
       };
+    },
+
+    login: async (_, { email }, { dataSources }) => {
+        const user = await dataSources.userAPI.findOrCreateUser({ email });
+        if (user) return new Buffer.from(email).toString('base64');
     },
   },
 };

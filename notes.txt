@@ -74,3 +74,8 @@ Steps for Authentication:
     - authenticating the user by looking up their credentials in the database
     - and attaching the user to the context
     - While we definitely don't advocate using this specific implementation in production since it's not secure, all of the concepts outlined here are transferable to how you'll implement authentication in a real world application.
+
+Practice Query for Authentication/Login:
+    mutation LoginUser {
+        login(email: "daisy@apollographql.com")
+    }

@@ -3,6 +3,9 @@
 // import ApolloServer class from  apollo-server
 const { ApolloServer } = require('apollo-server');
 
+// for authentication
+const isEmail = require('isemail');
+
 // import our schema from  src/schema.js
 const typeDefs = require('./schema');
 
