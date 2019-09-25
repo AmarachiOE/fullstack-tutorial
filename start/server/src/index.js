@@ -13,7 +13,7 @@ const { createStore } = require('./utils');
 const LaunchAPI = require('./datasources/launch');
 
 // import User API data source that connects SQL database
-const LaunchAPI = require('./datasources/launch');
+const UserAPI = require('./datasources/user');
 
 // connect resolver map to Apollo Server
 const resolvers = require('./resolvers');
@@ -23,13 +23,13 @@ const resolvers = require('./resolvers');
 const store = createStore();
 
 
-// Next, let's create a new instance of ApolloServer and pass our schema to the typeDefs property on the configuration object. (typdeDefs: typeDefs)
+// Next, let's create a new instance of ApolloServer and pass our schema to the typeDefs property on the configuration object. (typ33eDefs: typeDefs)
 const server = new ApolloServer({ 
     typeDefs,
     resolvers,
     dataSources: () => ({
         launchAPI: new LaunchAPI(),
-        userAPI: new userAPI({ store })
+        userAPI: new UserAPI({ store })
     }) 
 });
 
