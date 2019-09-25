@@ -1,6 +1,9 @@
 // import paginateResults and replace launches resolver fn
 const { paginateResults } = require("./utils");
 
+// (parents, args, context) => {}
+
+
 module.exports = {
   // 1st arg blank (parent), 2nd arg blank (args)
   Query: {
@@ -57,5 +60,12 @@ module.exports = {
         }) || []
       );
     },
+  },
+
+  Mutation: {
+    login: async (_, { email }, { dataSources }) => {
+      const user = await dataSources.userAPI.findOrCreateUser({ email });
+      if (user) return Buffer.from(email).toString('base64');
+    }
   },
 };
