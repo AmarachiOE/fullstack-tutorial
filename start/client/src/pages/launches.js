@@ -10,24 +10,35 @@ import { LaunchTile, Header, Button, Loading } from '../components';
 // fetch list of launches by calling launches query
 // launches query returns an object type with a list of launches,
 // cursor of the the paginated list,
-// and whether or not th elist hasMore launches
+// and whether or not the list hasMore launches
 // needs to be wrapped in gql function in order to parse it into an AST
+
+// spreading in LaunchTile under launches or could just list all the fields from LaunchTile
+
+// BUILDING A FRAGMENT BC SHARING DATA IN LAUNCHES.JS AND LAUNCH.JS
+export const LAUNCH_TILE_DATA = gql`
+  fragment LaunchTile on Launch {
+    id
+    isBooked
+    rocket {
+      id
+      name
+    }
+    mission {
+      name
+      missionPatch
+    }
+  }
+  ${LAUNCH_TILE_DATA}
+`;
+
 const GET_LAUNCHES = gql`
   query launchList($after: String) {
     launches(after: $after) {
       cursor
       hasMore
       launches {
-        id
-        isBooked
-        rocket {
-          id
-          name
-        }
-        mission {
-          name
-          missionPatch
-        }
+        ...LaunchTile
       }
     }
   }
@@ -83,3 +94,4 @@ export default function Launches() {
     </Fragment>
   );
 }
+
