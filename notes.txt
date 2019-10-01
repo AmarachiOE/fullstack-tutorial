@@ -92,3 +92,59 @@ Practice Query for Booking:
             }
         }
     }
+
+################# DEPLOY TO PRODUCTION
+
+Engine API Key:
+    - Format: 
+    - ENGINE_API_KEY=service:<your-service-name>:<hash-from-apollo-engine>
+
+Check and publish with the Apollo CLI
+    - It's time to publish our schema to Graph Manager! First, start your server in one terminal window by running npm start. 
+    - In another terminal window, run:
+    - $ npx apollo service:push --endpoint=http://localhost:4000
+
+    - This command publishes your schema to the Apollo registry. 
+    - Once your schema is uploaded, you should be able to see your schema in the Apollo Graph Manager explorer. 
+    - In future steps, we will pull down our schema from Graph Manager in order to power the Apollo VSCode extension.
+    - For subsequent publishes, we may first want to check for any breaking changes in our new schema against the old version. In a terminal window, run:
+    - $ npx apollo service:check --endpoint=http://localhost:4000
+    - then run the $ ... push --endpoint= command
+
+
+################# CLIENT
+    - install: apollo-client, react-apollo, graphql-tag
+    - copy the env file from /server to /client
+    - paste the following config in apollo.config.js:
+    module.exports = {
+        client: {
+            name: 'Space Explorer [web]',
+            service: 'space-explorer',
+        },
+    };
+
+
+    - Query Data using Vanilla JS
+    - first import gql:
+    - import gql from "graphql-tag";
+    client
+  .query({
+    query: gql`
+      query GetLaunch {
+        launch(id: 56) {
+          id
+          mission {
+            name
+          }
+        }
+      }
+    `
+  })
+  .then(result => console.log(result));
+
+
+
+useQuery: Fetching List
+    - import useQuery from @apollo/react-hooks
+    - pass query wrapped with gql in as first param
+    - wire comp up to use the loading, data, and error props on the result object to render UI
